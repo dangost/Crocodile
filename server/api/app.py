@@ -1,5 +1,9 @@
 from flask import Flask, jsonify, request
+import socket
 
+
+ip = socket.gethostbyname(socket.gethostname())
+port = 8080
 
 app = Flask(__name__)
 
@@ -10,5 +14,6 @@ def ping():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    print({ip: port})
+    app.run(host=ip, port=port)
 
