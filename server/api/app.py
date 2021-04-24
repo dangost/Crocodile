@@ -10,5 +10,5 @@ def ping():
 
 
 if __name__ == "__main__":
-    app.run(host="10.1.10.255", port=6789)
+    app.run(host="0.0.0.0", port=8080)
 
