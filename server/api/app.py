@@ -1,5 +1,5 @@
 from flask import Flask
-from application.app import database
+from application.app.initialize import database
 from application.entities.lobbies.controller import lobbies_controller
 from application.entities.users.controller import users_controller
 

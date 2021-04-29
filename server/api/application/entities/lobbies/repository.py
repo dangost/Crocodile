@@ -1,4 +1,4 @@
-from application.app import database
+from application.app.initialize import database
 from application.entities.lobbies.model import Lobby
 
 
