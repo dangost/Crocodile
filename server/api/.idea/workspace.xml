@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c647eb2-5a10-4f30-bd33-e9591c3ba2b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/data/abstract/base_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/data/abstract/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/data/models/json_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/data/models/json_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/lobbies/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/lobbies/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/lobbies/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/lobbies/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/lobbies/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/lobbies/repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/lobbies/schema.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/users/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/users/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/users/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/users/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/users/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/entities/users/repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/entities/users/schema.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,5 +114,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
