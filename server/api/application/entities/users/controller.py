@@ -6,6 +6,12 @@ from application.entities.users.repository import UsersRepository
 users_controller = Blueprint('users_controller', __name__)
 
 
+@users_controller.route('/api/users', methods=['GET'])
+def get_all_users():
+    users = UsersRepository.get_all_users()
+    return jsonify(users)
+
+
 @users_controller.route('/api/users/<user_id>/', methods=['GET'])
 def get_by_id(user_id: str):
     user = UsersRepository.get_user_by_id(user_id)

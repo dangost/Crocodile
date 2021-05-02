@@ -4,6 +4,12 @@ from application.entities.users.model import User
 
 class UsersRepository:
     @staticmethod
+    def get_all_users():
+        users = database.users
+        users_json = User.many_to_json(users)
+        return users_json
+
+    @staticmethod
     def get_user_by_id(user_id: str) -> dict:
         user = next((u for u in database.users if u.user_id == user_id), None)
         user_json = user.to_json

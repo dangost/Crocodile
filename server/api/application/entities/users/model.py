@@ -31,3 +31,10 @@ class User:
     def many_from_json(_json: list):
         users = list(map(User.from_json, _json))
         return users
+
+    @staticmethod
+    def many_to_json(users: list):
+        json_users = []
+        for user in users:
+            json_users.append(user.to_json)
+        return json_users
