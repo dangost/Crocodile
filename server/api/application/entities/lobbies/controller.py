@@ -24,17 +24,16 @@ def get_lobby_players(lobby_id: str):
     return players
 
 
-@lobbies_controller.route('/api/lobbies/', methods=['POST'])
-def post_lobby():
-    _json = request.get_json()
-    lobby_name = _json['lobbyName']
-    lobby_pass = _json['lobbyPass']
-    lobby_max_players = _json['lobbyMaxPlayers']
+@lobbies_controller.route('/api/lobbies/<lobby_name>/<lobby_pass>/<int:lobby_max_players>/', methods=['GET'])
+def post_lobby(lobby_name: str, lobby_pass: str, lobby_max_players: int):
+    if lobby_pass == "null":
+        lobby_pass = None
 
     lobby = Lobby(lobby_name, lobby_pass, lobby_max_players)
 
-    lobby_id = LobbiesRepository.create_lobby(lobby)
-    return lobby_id
+    lobby = LobbiesRepository.create_lobby(lobby)
+    lobby_json = lobby.to_json
+    return jsonify(lobby_json)
 
 
 @lobbies_controller.route('/api/lobbies/<lobby_id>/players/<player_id>/join', methods=['GET'])

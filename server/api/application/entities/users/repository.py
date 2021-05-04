@@ -16,12 +16,11 @@ class UsersRepository:
         return user_json
 
     @staticmethod
-    def create_new_user(nickname, avatar_id) -> str:
+    def create_new_user(nickname, avatar_id) -> User:
         user = User(nickname, avatar_id)
-        user_id = user.user_id
         database.users.append(user)
         database.save()
-        return user_id
+        return user
 
     @staticmethod
     def update_user(user: User) -> int:

@@ -20,8 +20,9 @@ def get_by_id(user_id: str):
 
 @users_controller.route('/api/users/new/<nickname>/<int:avatar_id>/', methods=['GET'])
 def post_user(nickname: str, avatar_id: int):
-    user_id = UsersRepository.create_new_user(nickname, avatar_id)
-    return jsonify(user_id)
+    user = UsersRepository.create_new_user(nickname, avatar_id)
+    user_json = user.to_json
+    return jsonify(user_json)
 
 
 @users_controller.route('/api/users/update', methods=['POST'])

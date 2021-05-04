@@ -47,6 +47,6 @@ class LobbiesRepository:
         return 404
 
     @staticmethod
-    def create_lobby(lobby) -> str:
+    def create_lobby(lobby) -> Lobby:
         database.lobbies.append(lobby)
-        return lobby.lobby_id
+        return lobby
