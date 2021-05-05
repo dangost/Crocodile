@@ -1,5 +1,7 @@
 from application.app.initialize import database
 from application.entities.lobbies.model import Lobby
+from application.entities.users.model import User
+from application.entities.users.repository import UsersRepository
 
 
 class LobbiesRepository:
@@ -17,10 +19,14 @@ class LobbiesRepository:
         return lobby_json
 
     @staticmethod
-    def get_lobby_players(lobby_id:  str) -> list:
+    def get_lobby_players(lobby_id:  str) -> list[dict]:
         all_lobbies = database.lobbies
         lobby = next((lo for lo in all_lobbies if lo.lobby_id == lobby_id), None)
-        players_list = lobby.lobby_players
+
+        players_list: list[dict] = []
+        for player_id in lobby.lobby_players:
+            user = UsersRepository.get_user_by_id(player_id)
+            players_list.append(user)
         return players_list
 
     @staticmethod
