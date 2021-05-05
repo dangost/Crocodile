@@ -1,3 +1,5 @@
+from typing import Optional
+
 from application.app.initialize import database
 from application.entities.users.model import User
 
@@ -23,10 +25,10 @@ class UsersRepository:
         return user
 
     @staticmethod
-    def update_user(user: User) -> int:
+    def update_user(user: User) -> Optional[User]:
         for i in range(len(database.users)):
             if database.users[i].user_id == user.user_id:
                 database.users[i] = user
                 database.save()
-                return 200
-        return 404
+                return user
+        return None

@@ -25,11 +25,11 @@ def post_user(nickname: str, avatar_id: int):
     return jsonify(user_json)
 
 
-@users_controller.route('/api/users/update', methods=['POST'])
-def put_user():
-    user_json = request.get_json()
-    user = User.from_json(user_json)
-    response = UsersRepository.update_user(user)
-
-    return jsonify(response)
+@users_controller.route('/api/users/update/<user_id>/<user_name>/<int:avatar_id>/', methods=['GET'])
+def put_user(user_id: str, user_name: str, avatar_id: int):
+    user = User(user_name, avatar_id)
+    user.user_id = user_id
+    updated_user = UsersRepository.update_user(user)
+    user_json = updated_user.to_json
+    return jsonify(user_json)
 
