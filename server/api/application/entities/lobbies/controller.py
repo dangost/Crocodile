@@ -21,7 +21,7 @@ def get_by_id(lobby_id: str):
 @lobbies_controller.route('/api/lobbies/<lobby_id>/players', methods=['GET'])
 def get_lobby_players(lobby_id: str):
     players = LobbiesRepository.get_lobby_players(lobby_id)
-    return players
+    return jsonify(players)
 
 
 @lobbies_controller.route('/api/lobbies/<lobby_name>/<lobby_pass>/<int:lobby_max_players>/', methods=['GET'])
