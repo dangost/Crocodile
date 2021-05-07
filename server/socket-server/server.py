@@ -26,7 +26,8 @@ class Server:
                 connection, client_address = self.server.accept()
 
                 new_client = Client(name=None, address=client_address, connection=connection)
-                connection.sendall(str.encode("Welcome!"))
+                message = jpysocket.jpyencode("Welcome")
+                connection.send(message)
                 self.clients.append(new_client)
                 print(f"new connection {client_address}")
                 self.threads.append(Thread(target=self.server_messaging, args=[new_client]))
@@ -44,7 +45,6 @@ class Server:
 
                     data, address = client.connection.recvfrom(1024)
                     message = jpysocket.jpydecode(data)
-                    print(message)
 
                     log = None
 
@@ -64,7 +64,7 @@ class Server:
                     for client in self.clients:  # sending to clients
                         if address != client.address:
                             message_to_send = jpysocket.jpyencode(message)
-                            client.connection.sendall(message_to_send)
+                            client.connection.send(message_to_send)
 
                 except BaseException as e:
                     print(e)
