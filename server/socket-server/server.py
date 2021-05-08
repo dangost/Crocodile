@@ -46,7 +46,9 @@ class Server:
             while not self.server_quit:
                 try:
 
-                    data, address = client.connection.recvfrom(1024)
+                    answer = self.server.recvfrom(1024)
+                    data = answer[0]
+                    address = answer[1]
                     if address not in self.connections:
                         self.connections.append(address)
 
@@ -101,8 +103,6 @@ class Server:
 
     def shut_down(self):
         self.server.close()
-        self.handling.join()
-        self.connect.join()
 
 
 server = Server()
