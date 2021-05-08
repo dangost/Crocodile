@@ -3,6 +3,7 @@ from typing import List
 from models.client import Client
 from models.log import Log
 from threading import *
+from _thread import *
 import jpysocket
 
 
@@ -21,8 +22,7 @@ class Server:
 
     def connecting(self):
         try:
-            while not self.server_quit:
-                self.server.listen(5)
+            while 1:
                 connection, client_address = self.server.accept()
 
                 new_client = Client(name=None, address=client_address, connection=connection)
@@ -30,9 +30,7 @@ class Server:
                 connection.send(message)
                 self.clients.append(new_client)
                 print(f"new connection {client_address}")
-                self.threads.append(Thread(target=self.server_messaging, args=[new_client]))
-                self.threads[-1].start()
-                self.connecting()
+                start_new_thread(self.server_messaging, (new_client,))
         except BaseException as e:
             print(e)
             self.shut_down()
@@ -81,11 +79,11 @@ class Server:
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind((self.ip, self.port))
+            self.server.listen(5)
 
             print(f"Server started as [{self.ip}:{self.port}]")
 
-            connect = Thread(target=self.connecting, args=[])
-            connect.start()
+            self.connecting()
         except BaseException as e:
             print(e)
             print("shut down")
@@ -97,8 +95,6 @@ class Server:
 
     def shut_down(self):
         self.server.close()
-        self.handling.join()
-        self.connect.join()
 
 
 server = Server()
