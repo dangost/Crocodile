@@ -19,6 +19,8 @@ class Server:
 
         self.threads = []
 
+        self.connections = []
+
     def connecting(self):
         try:
             while not self.server_quit:
@@ -29,6 +31,7 @@ class Server:
                 message = jpysocket.jpyencode("Welcome")
                 connection.send(message)
                 self.clients.append(new_client)
+                print('appended')
                 print(f"new connection {client_address}")
                 self.threads.append(Thread(target=self.server_messaging, args=[new_client]))
                 self.threads[-1].start()
@@ -44,6 +47,9 @@ class Server:
                 try:
 
                     data, address = client.connection.recvfrom(1024)
+                    if address not in self.connections:
+                        self.connections.append(address)
+
                     message = jpysocket.jpydecode(data)
 
                     log = None
@@ -61,10 +67,10 @@ class Server:
 
                     print(log)
 
-                    for client in self.clients:  # sending to clients
-                        if address != client.address:
+                    for connection in self.connections:  # sending to clients
+                        if address != connection:
                             message_to_send = jpysocket.jpyencode(message)
-                            client.connection.send(message_to_send)
+                            self.server.sendto(message_to_send, connection)
 
                 except BaseException as e:
                     print(e)
