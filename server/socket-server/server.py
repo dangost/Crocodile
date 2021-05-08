@@ -19,8 +19,6 @@ class Server:
 
         self.threads = []
 
-        self.connections = []
-
     def connecting(self):
         try:
             while not self.server_quit:
@@ -28,13 +26,13 @@ class Server:
                 connection, client_address = self.server.accept()
 
                 new_client = Client(name=None, address=client_address, connection=connection)
-                message = jpysocket.jpyencode("Welcome")
+                message = jpysocket.jpydecode("Welcome!")
                 connection.send(message)
                 self.clients.append(new_client)
-                print('appended')
                 print(f"new connection {client_address}")
                 self.threads.append(Thread(target=self.server_messaging, args=[new_client]))
                 self.threads[-1].start()
+                self.connecting()
         except BaseException as e:
             print(e)
             self.shut_down()
@@ -46,13 +44,9 @@ class Server:
             while not self.server_quit:
                 try:
 
-                    answer = self.server.recvfrom(1024)
-                    data = answer[0]
-                    address = answer[1]
-                    if address not in self.connections:
-                        self.connections.append(address)
-
+                    data, address = client.connection.recvfrom(1024)
                     message = jpysocket.jpydecode(data)
+                    print(message)
 
                     log = None
 
@@ -69,10 +63,10 @@ class Server:
 
                     print(log)
 
-                    for connection in self.connections:  # sending to clients
-                        if address != connection:
+                    for client in self.clients:  # sending to clients
+                        if address is not None:
                             message_to_send = jpysocket.jpyencode(message)
-                            self.server.sendto(message_to_send, connection)
+                            client.connection.send(message_to_send)
 
                 except BaseException as e:
                     print(e)
@@ -103,6 +97,8 @@ class Server:
 
     def shut_down(self):
         self.server.close()
+        self.handling.join()
+        self.connect.join()
 
 
 server = Server()
