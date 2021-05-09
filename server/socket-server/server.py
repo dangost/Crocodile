@@ -2,14 +2,13 @@ import socket
 from typing import List
 from models.client import Client
 from models.log import Log
-from threading import *
 from _thread import *
 import jpysocket
 
 
 class Server:
     def __init__(self):
-        self.ip = socket.gethostbyname(socket.gethostname())
+        self.ip = "192.168.100.5"
         self.port = 9090
 
         self.clients: List[Client] = []
@@ -26,7 +25,7 @@ class Server:
                 connection, client_address = self.server.accept()
 
                 new_client = Client(name=None, address=client_address, connection=connection)
-                message = jpysocket.jpydecode("Welcome!")
+                message = jpysocket.jpyencode("Welcome!")
                 connection.send(message)
                 self.clients.append(new_client)
                 print(f"new connection {client_address}")
