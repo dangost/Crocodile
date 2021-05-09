@@ -17,7 +17,7 @@ class Server:
 
         self.server_quit = False
 
-        self.threads = []
+        self.thread = None
 
     def connecting(self):
         try:
@@ -29,7 +29,6 @@ class Server:
                 connection.send(message)
                 self.clients.append(new_client)
                 print(f"new connection {client_address}")
-                start_new_thread(self.server_messaging, (new_client,))
         except BaseException as e:
             print(e)
             self.shut_down()
@@ -63,7 +62,8 @@ class Server:
                     for client in self.clients:  # sending to clients
                         if address is not None:
                             message_to_send = jpysocket.jpyencode(message)
-                            client.connection.send(message_to_send)
+                            self.server.sendto(message_to_send, client.address)
+                            print("sent")
 
                 except BaseException as e:
                     print(e)
@@ -78,7 +78,7 @@ class Server:
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind((self.ip, self.port))
-            self.server.listen(5)
+            self.server.listen(0)
 
             print(f"Server started as [{self.ip}:{self.port}]")
 
