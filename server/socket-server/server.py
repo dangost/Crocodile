@@ -1,13 +1,16 @@
 import socket
 import threading
 import time
+from typing import List
 
 import jpysocket
+
+from models.user import User
 
 
 class Server:
     def __init__(self, ip, port):
-        self.clients = []
+        self.users: List[User] = []
         self.ip = ip
         self.port = port
 
@@ -23,24 +26,27 @@ class Server:
 
     def connect_handler(self):
         while True:
-            client, address = self.server.accept()
-            if client not in self.clients:
-                self.clients.append(client)
-                threading.Thread(target=self.message_handler, args=(client,)).start()
-
-
+            connection, address = self.server.accept()
+            if next((user for user in self.users if user.connection == connection), None) is None:
+                user = User(connection)
+                self.users.append(user)
+                threading.Thread(target=self.message_handler, args=(user,)).start()
 
                 message = jpysocket.jpyencode("Connected")
-                client.send(message)
+                user.connection.send(message)
                 print("connection")
 
-    def message_handler(self, client):
+    def message_handler(self, user: User):
         while True:
-            _message = client.recv(1024)
+            _message = user.connection.recv(1024)
 
-            for _client in self.clients:
-                if _client != client:
-                    _client.send(_message)
+            # handle json
+
+            # а похуй на тот джисон, будем делать на клиенте всё
+
+            for _client in self.users:
+                if _client.connection != user.connection:
+                    _client.connection.send(_message)
                     print("message sent")
             time.sleep(1)
 
