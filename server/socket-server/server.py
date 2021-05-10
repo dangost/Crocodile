@@ -19,7 +19,7 @@ class Server:
         # we need all data about users
         # i think to get it by json
         # store it in ram
-        # user: User [ "connection": socket,
+        # user: User { "connection": socket, "userId": UUID, lobbyId: "UUID" }
 
     def connect_handler(self):
         while True:
@@ -27,6 +27,8 @@ class Server:
             if client not in self.clients:
                 self.clients.append(client)
                 threading.Thread(target=self.message_handler, args=(client,)).start()
+
+
 
                 message = jpysocket.jpyencode("Connected")
                 client.send(message)
