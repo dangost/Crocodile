@@ -20,6 +20,7 @@ class Server:
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(0)
+        print("started ", self.port)
         threading.Thread(target=self.connect_handler).start()
 
         # we need all data about users
@@ -44,8 +45,9 @@ class Server:
             _message = user.connection.recv(1024)
 
             response: list = self.handle_message(_message)
-
-            if response[0] == Events.exit_:
+            if response is None:
+                pass
+            elif response[0] == Events.exit_:
                 self.users.remove(user)
                 break
 
@@ -67,25 +69,26 @@ class Server:
 
             _json = json.loads(_json_str)
 
-            event = message[0]
+            event = int(message[0])
 
             if event == Events.exit_:
                 return [event]
 
             elif event == Events.chat_:
-                pass
+                print("chat")
+                return [event]
 
             elif event == Events.brush_:
-                pass
+                return [event]
 
             elif event == Events.guessed_:
                 lobby_id = _json['lobbyId']
                 user_id = _json['userId']
 
                 address = f"{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
-
+                print("guess")
                 response = requests.get(address).json()
-
+                print(response is not None)
                 encoded = jpysocket.jpyencode(response)
 
                 return [event, "OK", encoded]
@@ -94,4 +97,4 @@ class Server:
             return None
 
 
-server = Server("192.168.100.5", 9090)
+server = Server("77.223.97.149", 9091)

@@ -1,0 +1,80 @@
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+Traceback (most recent call last):
+  File "app.py", line 18, in <module>
+    app.run(ip, port)
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 990, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python3.8/dist-packages/werkzeug/serving.py", line 1052, in run_simple
+    inner()
+  File "/usr/local/lib/python3.8/dist-packages/werkzeug/serving.py", line 996, in inner
+    srv = make_server(
+  File "/usr/local/lib/python3.8/dist-packages/werkzeug/serving.py", line 847, in make_server
+    return ThreadedWSGIServer(
+  File "/usr/local/lib/python3.8/dist-packages/werkzeug/serving.py", line 740, in __init__
+    HTTPServer.__init__(self, server_address, handler)
+  File "/usr/lib/python3.8/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.8/http/server.py", line 138, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.8/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://77.223.97.149:8080/ (Press CTRL+C to quit)
+37.214.27.173 - - [11/May/2021 15:48:53] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 15:48:54] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 15:48:55] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 15:48:55] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:05:02] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:05:04] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:05:16] "[37mGET /api/lobbies/google/null/5/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:05:16] "[37mGET /api/lobbies/dbe2d5e3-e0c3-4549-a923-b3db83926509/players/ef321a38-5663-4de9-bd8a-f0370fc3a487/join HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:05:19] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:05:21] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:06:01] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:09:38] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:09:41] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:10:16] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:10:38] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:11:26] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:11:31] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:11:58] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:13:20] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:13:30] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:13:40] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:14:58] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:15:41] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:15:46] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:18:00] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:18:15] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:22:30] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:23:35] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:23:40] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:24:35] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:25:55] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:25:56] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:28:48] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:29:38] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:29:48] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:31:19] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:31:35] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:32:43] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:33:32] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:33:37] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:33:52] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:34:02] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:34:43] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:35:48] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:36:04] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:36:10] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 16:40:23] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:40:27] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 16:40:50] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
