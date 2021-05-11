@@ -53,8 +53,8 @@ class Server:
                 if response is None:
                     pass
                 elif response[0] == Events.exit_:
-                    self.users.remove(user)
-                    break
+                    print('exit')
+                    raise Exception
 
                 elif response[0] == Events.guessed_:
                     _message = response[2]
@@ -67,7 +67,6 @@ class Server:
                     continue
 
                 users = list(filter(lambda u: u.lobby_id == user.lobby_id, self.users))
-
                 for _client in users:
                     if _client.connection != user.connection or check:
                         _client.connection.send(_message)
@@ -90,6 +89,7 @@ class Server:
             event = int(message[0])
 
             if event == Events.exit_:
+                print('exit')
                 return [event]
 
             elif event == Events.chat_:
@@ -131,4 +131,4 @@ class Server:
 
 
 # server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9090)
+server = Server("77.223.97.149", 9094)
