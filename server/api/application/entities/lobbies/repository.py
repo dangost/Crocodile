@@ -85,8 +85,9 @@ class LobbiesRepository:
         database.lobbies[idx] = lobby
 
         json = {
-            "word": word,
-            "drawerId": drawer_id
+            "text": word,
+            "userId": drawer_id,
+            "lobbyId": lobby.lobby_id
         }
 
         return json

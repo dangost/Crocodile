@@ -97,4 +97,5 @@ class Server:
             return None
 
 
-server = Server("77.223.97.149", 9091)
+server = Server("192.168.100.5", 9090)
+#  server = Server("77.223.97.149", 9091)

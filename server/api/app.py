@@ -5,8 +5,8 @@ from application.entities.users.controller import users_controller
 
 app = Flask(__name__)
 
-# ip = "127.0.0.1"
-ip = "77.223.97.149"
+ip = "127.0.0.1"
+# ip = "77.223.97.149"
 port = 8080
 
 # init routes
