@@ -4,3 +4,4 @@ class Events:
     touch_ = 2
     brush_ = 3
     guessed_ = 7
+    user_init = 8

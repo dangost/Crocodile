@@ -60,14 +60,18 @@ class Server:
                     _message = response[2]
                     check = response[3]
 
-                count = 0
-                for _client in self.users:
+                elif response[0] == Events.user_init:
+                    user_idx = self.users.index(user)
+                    user.user_id, user.lobby_id = response[2]
+                    self.users[user_idx] = user
+                    continue
+
+                users = list(filter(lambda u: u.lobby_id == user.lobby_id, self.users))
+
+                for _client in users:
                     if _client.connection != user.connection or check:
                         _client.connection.send(_message)
-                        print("message sent")
-                        count += 1
-                        if count > len(self.users):
-                            raise Exception
+
             except BaseException:
                 self.users.remove(user)
                 user.connection.close()
@@ -100,7 +104,6 @@ class Server:
                 user_id = _json['userId']
 
                 address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
-                # address = f"http://77.223.97.149:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
 
                 response = requests.get(address).text
@@ -115,6 +118,12 @@ class Server:
                 not_check_me = True
 
                 return [event, "OK", encoded, not_check_me]
+
+            elif event == Events.user_init:
+                lobby_id = _json['lobbyId']
+                user_id = _json['userId']
+
+                return [event, "OK", (user_id, lobby_id)]
 
         except BaseException as e:
             print(e)
