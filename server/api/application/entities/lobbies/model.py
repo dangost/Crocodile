@@ -49,3 +49,4 @@ class Lobby:
     def many_from_json(_json: list):
         lobbies = list(map(Lobby.from_json, _json))
         return lobbies
+
