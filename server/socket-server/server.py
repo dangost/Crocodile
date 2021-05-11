@@ -54,9 +54,10 @@ class Server:
 
                 elif response[0] == Events.guessed_:
                     _message = response[2]
+                    check = response[3]
 
                 for _client in self.users:
-                    if _client.connection != user.connection:
+                    if _client.connection != user.connection or check:
                         _client.connection.send(_message)
                         print("message sent")
             except BaseException:
@@ -101,7 +102,9 @@ class Server:
 
                 encoded = jpysocket.jpyencode(response)
 
-                return [event, "OK", encoded]
+                not_check_me = True
+
+                return [event, "OK", encoded, not_check_me]
 
         except BaseException as e:
             print(e)
