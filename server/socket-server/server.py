@@ -1,6 +1,5 @@
 import socket
 import threading
-import time
 from typing import List
 from models.events import Events
 import json
@@ -46,6 +45,8 @@ class Server:
                 _message = user.connection.recv(1024)
 
                 response: list = self.handle_message(_message)
+
+                check = False
                 if response is None:
                     pass
                 elif response[0] == Events.exit_:
@@ -106,7 +107,7 @@ class Server:
                 print(_json['text'])
                 #####
 
-                encoded = jpysocket.jpyencode(response)
+                encoded = jpysocket.jpyencode(str(Events.guessed_) + response)
 
                 not_check_me = True
 
@@ -117,5 +118,5 @@ class Server:
             return None
 
 
-server = Server("192.168.100.5", 9090)
-# server = Server("77.223.97.149", 9092)
+# server = Server("192.168.100.5", 9090)
+server = Server("77.223.97.149", 9092)
