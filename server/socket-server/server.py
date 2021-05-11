@@ -89,17 +89,18 @@ class Server:
                 lobby_id = _json['lobbyId']
                 user_id = _json['userId']
 
-                address = f"{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+                address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
                 response = requests.get(address).json()
-
+                print(response['text'])
                 encoded = jpysocket.jpyencode(response)
 
                 return [event, "OK", encoded]
 
-        except BaseException:
+        except BaseException as e:
+            print(e)
             return None
 
 
-server = Server("192.168.100.5", 9090)
-#  server = Server("77.223.97.149", 9091)
+# server = Server("192.168.100.5", 9090)
+server = Server("77.223.97.149", 9092)

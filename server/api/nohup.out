@@ -78,3 +78,27 @@ OSError: [Errno 98] Address already in use
 37.215.10.91 - - [11/May/2021 16:40:23] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
 37.214.27.173 - - [11/May/2021 16:40:27] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
 37.214.27.173 - - [11/May/2021 16:40:50] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://77.223.97.149:8080/ (Press CTRL+C to quit)
+37.214.27.173 - - [11/May/2021 17:10:27] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:10:31] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:10:39] "[37mGET /api/lobbies/Bridgette/null/5/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:10:39] "[37mGET /api/lobbies/ecf48d8d-4399-4fcf-a65b-1053b57a0b9e/players/ef321a38-5663-4de9-bd8a-f0370fc3a487/join HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 17:10:49] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 17:12:49] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:13:34] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:13:43] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:13:55] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:14:44] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 17:14:53] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+77.223.97.149 - - [11/May/2021 17:15:25] "[37mGET /api/lobbies/ecf48d8d-4399-4fcf-a65b-1053b57a0b9e/player-guessed/61aafa58-a651-4083-830c-7cce620f6a35/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 17:18:33] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:18:42] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+77.223.97.149 - - [11/May/2021 17:19:27] "[37mGET /api/lobbies/ecf48d8d-4399-4fcf-a65b-1053b57a0b9e/player-guessed/ef321a38-5663-4de9-bd8a-f0370fc3a487/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:20:44] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.215.10.91 - - [11/May/2021 17:21:38] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
+37.214.27.173 - - [11/May/2021 17:22:06] "[37mGET /api/lobbies/ HTTP/1.1[0m" 200 -
