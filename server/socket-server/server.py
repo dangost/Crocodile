@@ -56,12 +56,18 @@ class Server:
                     _message = response[2]
                     check = response[3]
 
+                count = 0
                 for _client in self.users:
                     if _client.connection != user.connection or check:
                         _client.connection.send(_message)
                         print("message sent")
+                        count += 1
+                        if count > len(self.users):
+                            raise Exception
             except BaseException:
                 self.users.remove(user)
+                user.connection.close()
+                print('user has closed | ', user.address_str)
                 break
 
     def handle_message(self, message: bytes):
