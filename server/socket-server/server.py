@@ -2,6 +2,9 @@ import socket
 import threading
 import time
 from typing import List
+from models.events import Events
+import json
+import requests
 
 import jpysocket
 
@@ -40,15 +43,55 @@ class Server:
         while True:
             _message = user.connection.recv(1024)
 
-            # handle json
+            response: list = self.handle_message(_message)
 
-            # а похуй на тот джисон, будем делать на клиенте всё
+            if response[0] == Events.exit_:
+                self.users.remove(user)
+                break
+
+            elif response[0] == Events.guessed_:
+                _message = response[2]
 
             for _client in self.users:
                 if _client.connection != user.connection:
                     _client.connection.send(_message)
                     print("message sent")
             time.sleep(1)
+
+    def handle_message(self, message: bytes):
+        # 0 - exit,
+        try:
+            message: str = jpysocket.jpydecode(message)
+
+            _json_str = message[1:len(message)]
+
+            _json = json.loads(_json_str)
+
+            event = message[0]
+
+            if event == Events.exit_:
+                return [event]
+
+            elif event == Events.chat_:
+                pass
+
+            elif event == Events.brush_:
+                pass
+
+            elif event == Events.guessed_:
+                lobby_id = _json['lobbyId']
+                user_id = _json['userId']
+
+                address = f"{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+
+                response = requests.get(address).json()
+
+                encoded = jpysocket.jpyencode(response)
+
+                return [event, "OK", encoded]
+
+        except BaseException:
+            return None
 
 
 server = Server("192.168.100.5", 9090)
