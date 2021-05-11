@@ -41,11 +41,13 @@ class LobbiesRepository:
                     return 400
                 database.lobbies[i].lobby_players.append(player_id)
                 database.lobbies[i].current_players += 1
+
+                if database.lobbies[i].drawer_id is None:
+                    database.lobbies[i].drawer_id = player_id
+                    database.lobbies[i].word = random.choice(words)
+
                 return 200
 
-            if database.lobbies[i].drawer_id is None:
-                database.lobbies[i].drawer_id = player_id
-                database.lobbies[i].word = random.choice(words)
         return 404
 
     @staticmethod
