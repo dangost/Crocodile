@@ -1,6 +1,9 @@
+import random
+
 from application.app.initialize import database
+from application.app.words import words
 from application.entities.lobbies.model import Lobby
-from typing import List
+from typing import List, Optional
 from application.entities.users.repository import UsersRepository
 
 
@@ -39,6 +42,10 @@ class LobbiesRepository:
                 database.lobbies[i].lobby_players.append(player_id)
                 database.lobbies[i].current_players += 1
                 return 200
+
+            if database.lobbies[i].drawer_id is None:
+                database.lobbies[i].drawer_id = player_id
+                database.lobbies[i].word = random.choice(words)
         return 404
 
     @staticmethod
@@ -56,3 +63,30 @@ class LobbiesRepository:
     def create_lobby(lobby) -> Lobby:
         database.lobbies.append(lobby)
         return lobby
+
+    @staticmethod
+    def lobby_player_guessed(lobby_id, player_id) -> Optional[dict]:
+        lobby = next((lo for lo in database.lobbies if lo.lobby_id == lobby_id), None)
+
+        if lobby is None:
+            return None
+        elif player_id not in lobby.lobby_players:
+            return None
+
+        idx: int = database.lobbies.index(lobby)
+
+        # todo get new word
+        word = random.choice(words)
+
+        lobby.increment += 1
+        drawer_id = lobby.lobby_players[lobby.increment % lobby.current_players]
+        lobby.drawer_id = drawer_id
+
+        database.lobbies[idx] = lobby
+
+        json = {
+            "word": word,
+            "drawerId": drawer_id
+        }
+
+        return json

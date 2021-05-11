@@ -49,8 +49,10 @@ def lobby_quit_player(lobby_id, player_id):
 
 
 @lobbies_controller.route('/api/lobbies/<lobby_id>/player-guessed/<player_id>/', methods=['GET'])
-def lobby_player_guessed(player_id):
+def lobby_player_guessed(lobby_id, player_id):
     # todo check that lobby contains player
     # todo create new word and turn queue
     # todo return {"word" : str, "drawerId": str}
-    pass
+    response = LobbiesRepository.lobby_player_guessed(lobby_id, player_id)
+
+    return jsonify(response)

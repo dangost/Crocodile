@@ -9,6 +9,9 @@ class Lobby:
         self.lobby_max_players = lobby_max_players
         self.lobby_players = []
         self.current_players = 0
+        self.increment = 0
+        self.drawer_id = None
+        self.word = None
 
     @property
     def to_json(self) -> dict:
