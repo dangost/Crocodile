@@ -44,6 +44,9 @@ class Server:
             try:
                 _message = user.connection.recv(1024)
 
+                if _message == b'':
+                    raise Exception
+
                 response: list = self.handle_message(_message)
 
                 check = False
@@ -119,4 +122,4 @@ class Server:
 
 
 # server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9092)
+server = Server("77.223.97.149", 9090)

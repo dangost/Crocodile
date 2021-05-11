@@ -21,7 +21,9 @@ class Lobby:
             "lobbyPass": self.lobby_pass,
             "maxPlayers": self.lobby_max_players,
             "lobbyPlayers": self.lobby_players,
-            "currentPlayers": self.current_players
+            "currentPlayers": self.current_players,
+            "drawerId": self.drawer_id,
+            "word": self.word
         }
         return _json
 
