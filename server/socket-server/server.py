@@ -42,23 +42,27 @@ class Server:
 
     def message_handler(self, user: User):
         while True:
-            _message = user.connection.recv(1024)
+            try:
+                _message = user.connection.recv(1024)
 
-            response: list = self.handle_message(_message)
-            if response is None:
-                pass
-            elif response[0] == Events.exit_:
+                response: list = self.handle_message(_message)
+                if response is None:
+                    pass
+                elif response[0] == Events.exit_:
+                    self.users.remove(user)
+                    break
+
+                elif response[0] == Events.guessed_:
+                    _message = response[2]
+
+                for _client in self.users:
+                    if _client.connection != user.connection:
+                        _client.connection.send(_message)
+                        print("message sent")
+                time.sleep(1)
+            except BaseException:
                 self.users.remove(user)
                 break
-
-            elif response[0] == Events.guessed_:
-                _message = response[2]
-
-            for _client in self.users:
-                if _client.connection != user.connection:
-                    _client.connection.send(_message)
-                    print("message sent")
-            time.sleep(1)
 
     def handle_message(self, message: bytes):
         # 0 - exit,
@@ -88,7 +92,7 @@ class Server:
                 address = f"{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
                 response = requests.get(address).json()
-                print(response is not None)
+
                 encoded = jpysocket.jpyencode(response)
 
                 return [event, "OK", encoded]
