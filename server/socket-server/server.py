@@ -59,7 +59,6 @@ class Server:
                     if _client.connection != user.connection:
                         _client.connection.send(_message)
                         print("message sent")
-                time.sleep(1)
             except BaseException:
                 self.users.remove(user)
                 break
@@ -90,9 +89,16 @@ class Server:
                 user_id = _json['userId']
 
                 address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+                # address = f"http://77.223.97.149:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
-                response = requests.get(address).json()
-                print(response['text'])
+
+                response = requests.get(address).text
+
+                #####
+                _json = json.loads(response)
+                print(_json['text'])
+                #####
+
                 encoded = jpysocket.jpyencode(response)
 
                 return [event, "OK", encoded]
@@ -102,5 +108,5 @@ class Server:
             return None
 
 
-# server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9092)
+server = Server("192.168.100.5", 9090)
+# server = Server("77.223.97.149", 9092)
