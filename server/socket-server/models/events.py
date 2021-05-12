@@ -5,3 +5,4 @@ class Events:
     brush_ = 3
     guessed_ = 7
     user_init = 8
+    user_connected = 6
