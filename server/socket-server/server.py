@@ -65,7 +65,7 @@ class Server:
                     user.user_id, user.lobby_id = response[2]
                     self.users[user_idx] = user
                     _message = response[3]
-                    check = True
+                    check = False
 
                 users = list(filter(lambda u: u.lobby_id == user.lobby_id, self.users))
                 for _client in users:
