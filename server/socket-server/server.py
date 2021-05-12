@@ -103,7 +103,8 @@ class Server:
                 lobby_id = _json['lobbyId']
                 user_id = _json['userId']
 
-                address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+                # address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+                address = f"http://77.223.97.149:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
 
                 response = requests.get(address).text
@@ -130,5 +131,5 @@ class Server:
             return None
 
 
-# server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9094)
+server = Server("192.168.100.5", 9090)
+# server = Server("77.223.97.149", 9094)
