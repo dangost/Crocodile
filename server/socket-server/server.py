@@ -65,6 +65,7 @@ class Server:
                     user.user_id, user.lobby_id = response[2]
                     self.users[user_idx] = user
                     _message = response[3]
+                    check = True
 
                 users = list(filter(lambda u: u.lobby_id == user.lobby_id, self.users))
                 for _client in users:
@@ -126,14 +127,14 @@ class Server:
 
                 user_json = requests.get(f"http://77.223.97.149:8080/api/users/{user_id}/").text
 
-                encoded = jpysocket.jpyencode(user_json)
+                encoded = jpysocket.jpyencode(str(Events.user_connected) + user_json)
 
-                return [event, "OK", (user_id, lobby_id), f"{Events.user_connected}{encoded}"]
+                return [event, "OK", (user_id, lobby_id), encoded]
 
         except BaseException as e:
             print(e)
             return None
 
 
-# server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9090)
+server = Server("192.168.100.5", 9090)
+# server = Server("77.223.97.149", 9090)
