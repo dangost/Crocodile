@@ -7,6 +7,7 @@ import requests
 
 import jpysocket
 
+from models.static import IP, PORT
 from models.user import User
 
 
@@ -21,11 +22,6 @@ class Server:
         self.server.listen(0)
         print("started ", self.port)
         threading.Thread(target=self.connect_handler).start()
-
-        # we need all data about users
-        # i think to get it by json
-        # store it in ram
-        # user: User { "connection": socket, "userId": UUID, lobbyId: "UUID" }
 
     def connect_handler(self):
         while True:
@@ -104,8 +100,7 @@ class Server:
                 lobby_id = _json['lobbyId']
                 user_id = _json['userId']
 
-                # address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
-                address = f"http://77.223.97.149:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
+                address = f"http://{self.ip}:8080/api/lobbies/{lobby_id}/player-guessed/{user_id}/"
                 print("guess")
 
                 response = requests.get(address).text
@@ -125,7 +120,7 @@ class Server:
                 lobby_id = _json['lobbyId']
                 user_id = _json['userId']
 
-                user_json = requests.get(f"http://77.223.97.149:8080/api/users/{user_id}/").text
+                user_json = requests.get(f"http://{self.ip}:8080/api/users/{user_id}/").text
 
                 encoded = jpysocket.jpyencode(str(Events.user_connected) + user_json)
 
@@ -136,5 +131,4 @@ class Server:
             return None
 
 
-# server = Server("192.168.100.5", 9090)
-server = Server("77.223.97.149", 9090)
+server = Server(IP, PORT)
