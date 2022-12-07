@@ -1,11 +1,10 @@
 #!/bin/bash
 
-cd server
+cd server/api
 
-cd api
-
-nohup python3 app.py &
-
+docker build -t crocoapi .
 cd ../socket-server
+docker build -t crocosocket .
 
-nohup python3 server.py &
+docker run -d -p 8080:8080 crocoapi
+docker run -d -p 9090:9090 crocosocket
