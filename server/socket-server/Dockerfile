@@ -5,5 +5,5 @@ COPY . /app/
 
 RUN pip install jpysocket;
 
-CMD ["python" "server.py"]
+CMD ["python", "server.py"]
 EXPOSE 8080
